@@ -1,0 +1,19 @@
+version: '3'
+services:
+  php-app:
+    build:
+      context: ./ # Carpeta actual
+      dockerfile: Dockerfile # Ruta al Dockerfile personalizado
+    container_name: php-container
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: mi_bd
+    volumes:
+      - /ruta/a/tu/directorio/de/datos/mysql:/var/lib/mysql
